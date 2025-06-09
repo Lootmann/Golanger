@@ -55,7 +55,6 @@ func main() {
 	}
 
 	dirId := getUserInput(dirEntries)
-	fmt.Println("dirId: ", dirId)
 
 	selectedDirPath := filepath.Join(configPath, dirEntries[dirId-1].Name())
 	currentPath, err := os.Getwd()
