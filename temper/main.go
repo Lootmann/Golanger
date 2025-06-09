@@ -21,13 +21,12 @@ func getUserInput(dirpaths []os.DirEntry) int {
 		for i, dir := range dirpaths {
 			fmt.Printf(">>> %d %s\n", i+1, dir.Name())
 		}
-		fmt.Printf(">>> choose %d - %d\n", 1, len(dirpaths))
-
-		fmt.Scanln(&chooseDirId)
+		fmt.Printf(">>> choose [%d - %d] : ", 1, len(dirpaths))
+		fmt.Scanf("%d", &chooseDirId)
 		if chooseDirId >= 1 && chooseDirId <= len(dirpaths) {
 			break
 		}
-		fmt.Print(">>> choose invalid input\n\n")
+		fmt.Print("\n>>> choose invalid input\n\n")
 	}
 
 	return chooseDirId
@@ -55,6 +54,7 @@ func main() {
 	}
 
 	dirId := getUserInput(dirEntries)
+	fmt.Printf(">>> selected %d -> %s\n\n", dirId, dirEntries[dirId-1].Name())
 
 	selectedDirPath := filepath.Join(configPath, dirEntries[dirId-1].Name())
 	currentPath, err := os.Getwd()
